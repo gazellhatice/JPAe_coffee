@@ -136,6 +136,6 @@ konularında uygulamalı deneyim kazanılmıştır.
 
 **Hatice Gazel**
 
-Software Engineering Graduate
+Software Engineering
 
 [GitHub](https://github.com/gazellhatice)
