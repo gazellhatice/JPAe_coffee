@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:composition template="template/template1.xhtml">
+
+
+        <!DOCTYPE html>
+        <ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+                         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                         xmlns:h="http://xmlns.jcp.org/jsf/html"
+                         >
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container">
+                    <a class="navbar-brand" href="/JPAe_coffee/index.xhtml">E-Coffee</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <h:form>
+                                <li class="nav-item">
+                                    <a  href="/JPAe_coffee/module/document.xhtml">document</a>
+                                </li>
+                            </h:form>
+                            <h:form>
+                                <li class="nav-item">
+                                    <h:commandLink styleClass="nav-link" action="#{navigationBean.page('addresses')}" value="addresses" />
+                                </li>
+                            </h:form>
+                            <h:form>
+                                <li class="nav-item">
+                                    <h:commandLink styleClass="nav-link" action="#{navigationBean.page('carts')}" value="carts" />
+                                </li>
+                            </h:form>
+                            <h:form>
+                                <li class="nav-item">
+                                    <h:commandLink styleClass="nav-link" action="#{navigationBean.page('invoices')}" value="invoices" />
+                                </li>
+                            </h:form>
+
+                            <h:form>
+                                <li class="nav-item">
+                                    <h:commandLink styleClass="nav-link" action="#{navigationBean.page('orders')}" value="orders" />
+                                </li>
+                            </h:form>
+
+                            <h:form>
+                                <li class="nav-item">
+                                    <h:commandLink styleClass="nav-link" action="#{navigationBean.page('payments')}" value="payments" />
+                                </li>
+                            </h:form>
+                            <h:form>
+                                <li class="nav-item">
+                                    <h:commandLink styleClass="nav-link" action="#{navigationBean.page('rolepermissions')}" value="role_permissions" />
+                                </li>
+                            </h:form>
+                            <h:form>
+                                <li class="nav-item">
+                                    <h:commandLink styleClass="nav-link" action="#{navigationBean.page('katagori')}" value="kategori" />
+                                </li>
+                            </h:form>
+
+                            <h:form>
+                                <li class="nav-item">
+                                    <h:commandLink styleClass="nav-link" action="#{navigationBean.page('product')}" value="urunler" />
+                                </li>
+                            </h:form>
+                            <h:form>
+                                <li class="nav-item">
+                                    <h:commandLink styleClass="nav-link" action="#{navigationBean.page('permission')}" value="permission" />
+                                </li>
+                            </h:form>
+                            <h:form>
+                                <li class="nav-item">
+                                    <h:commandLink styleClass="nav-link" action="#{navigationBean.page('roles')}" value="roles" />
+                                </li>
+                            </h:form>
+                            <h:form>
+                                <li class="nav-item">
+                                    <h:commandLink styleClass="nav-link" action="#{navigationBean.page('supplier')}" value="supplier" />
+                                </li>
+                            </h:form>
+                            <h:form>
+                                <li class="nav-item">
+                                    <h:commandLink styleClass="nav-link" action="#{navigationBean.page('user')}" value="user" />
+                                </li>
+                            </h:form>
+
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+
+
+        </ui:composition>
+
+    </ui:composition>
+
+</html>

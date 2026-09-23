@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                 template="/template/template.xhtml">
+
+    <ui:define name="content">
+        <h:form>
+            <h:dataTable value="#{ordersBean.list}" var="orders">
+                <h:column>
+                    <f:facet name="header">orders ID</f:facet>
+                        #{orders.orderId}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">status </f:facet>
+                    <h:commandLink action="#{ordersBean.setOrders(orders)}" value="#{orders.status}" >
+
+                    </h:commandLink>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">orderDate </f:facet>
+                        #{orders.orderDate}
+                </h:column>
+
+
+
+                <!-- Delete button -->
+                <h:column>
+                    <f:facet name="header">Actions</f:facet>
+                    <h:commandButton value="deleteCategory" action="#{ordersBean.delete(orders.orderId)}"/>
+                </h:column>
+            </h:dataTable>
+          
+
+            <h:panelGrid columns="2">
+                <h:outputLabel for="status">status Name:</h:outputLabel>
+                <h:inputText id="status" value="#{ordersBean.orders.status}"/>
+            </h:panelGrid>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="orderDate">orderDate Name:</h:outputLabel>
+                <h:inputText id="orderDate" value="#{ordersBean.orders.orderDate}"/>
+            </h:panelGrid>
+
+
+
+            <h:commandButton styleClass="btn btn-success" rendered="#{ordersBean.orders.orderId !=null}" action="#{ordersBean.clearForm()}" value="Clear Form"/>
+            <h:commandButton styleClass="btn btn-success" rendered="#{ordersBean.orders.orderId  !=null}" action="#{ordersBean.update(ordersBean.orders)}" value="update Form"/>
+
+            <h:commandButton value="add" action="#{ordersBean.create()}"/>
+        </h:form>
+        <div class="text-center">
+                    <div class="d-inline-block mr-2">
+                        <h:form>
+                            <h:commandButton action="#{ordersBean.prev()}" value="Geri"/>
+                        </h:form>
+                    </div>
+                    <div class="d-inline-block">
+                        <h:form>
+                            <h:commandButton action="#{ordersBean.next()}"  value="İleri"/>
+                        </h:form>
+                    </div>
+                </div>
+    </ui:define>
+
+</ui:composition>

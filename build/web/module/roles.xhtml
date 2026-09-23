@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                 template="/template/template.xhtml">
+
+    <ui:define name="content">
+        <h:form>
+            <h:dataTable value="#{rolesBean.list}" var="roles">
+                <h:column>
+                    <f:facet name="header">Category ID</f:facet>
+                        #{roles.roleId}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Category Name</f:facet>
+                    <h:commandLink action="#{rolesBean.setRoles(roles)}" value="#{roles.roleName}" >
+
+                    </h:commandLink>
+
+
+                </h:column>
+                <!-- Add more columns as needed -->
+
+
+                <!-- Delete button -->
+                <h:column>
+                    <f:facet name="header">Actions</f:facet>
+                    <h:commandButton value="deleteCategory" action="#{rolesBean.delete(roles.roleId)}"/>
+                </h:column>
+            </h:dataTable>
+
+            <h:panelGrid columns="2">
+                <h:outputLabel for="roles">Roles Name:</h:outputLabel>
+                <h:inputText id="roles" value="#{rolesBean.roles.roleName}"/>
+            </h:panelGrid>
+
+            <h:commandButton styleClass="btn btn-success" rendered="#{rolesBean.roles.roleId !=null}" action="#{rolesBean.clearForm()}" value="Clear Form"/>
+            <h:commandButton styleClass="btn btn-success" rendered="#{rolesBean.roles.roleId !=null}" action="#{rolesBean.update(rolesBean.roles)}" value="update Form"/>
+
+            <h:commandButton value="addCategory" action="#{rolesBean.create()}"/>
+        </h:form>
+    </ui:define>
+
+
+</ui:composition>

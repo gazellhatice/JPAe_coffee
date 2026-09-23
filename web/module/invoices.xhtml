@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                 template="/template/template.xhtml">
+
+    <ui:define name="content">
+        <h:form>
+            <h:dataTable value="#{invoicesBean.list}" var="fatura">
+                <h:column>
+                    <f:facet name="header">Invoices ID</f:facet>
+                        #{fatura.invoiceId}
+                </h:column>
+                <h:column>
+                    <f:facet name="header"> Amount </f:facet>
+                    <h:commandLink action="#{invoicesBean.setInvoices(fatura)}" value="#{fatura.amount}" >
+
+                    </h:commandLink>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Invoice Date   </f:facet>
+                        #{fatura.invoiceDate}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">   Order Id </f:facet>
+                        #{fatura.orderId.orderId}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">   Order orderDate </f:facet>
+                        #{fatura.orderId.orderDate}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">   Order status </f:facet>
+                        #{fatura.orderId.status}
+                </h:column>
+
+                <!-- Add more columns as needed -->
+
+
+                <!-- Delete button -->
+                <h:column>
+                    <f:facet name="header">Actions</f:facet>
+                    <h:commandButton value="delete" action="#{invoicesBean.delete(fatura.InvoicesId)}"/>
+                </h:column>
+            </h:dataTable>
+
+
+            <h:panelGrid columns="2">
+                <h:outputLabel for="amount">Amount </h:outputLabel>
+                <h:inputText id="amount" value="#{invoicesBean.invoices.amount}"/>
+            </h:panelGrid>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="invoiceDate">Invoice Date </h:outputLabel>
+                <h:inputText id="invoiceDate" value="#{invoicesBean.invoices.invoiceDate}"/>
+            </h:panelGrid>
+
+
+
+            <label>status</label>
+            <h:selectOneMenu value="#{invoicesBean.invoices.orderId}" converter="ordersConverter">
+                <f:selectItems value="#{ordersBean.list}" var="h" itemLabel="#{h.status}" itemValue="#{h}">      
+                </f:selectItems>
+            </h:selectOneMenu>
+
+
+            <h:commandButton styleClass="btn btn-success" rendered="#{invoicesBean.invoices.invoiceId !=null}" action="#{invoicesBean.clearForm()}" value="Clear Form"/>
+            <h:commandButton styleClass="btn btn-success" rendered="#{invoicesBean.invoices.invoiceId !=null}" action="#{invoicesBean.update(invoicesBean.invoices)}" value="update Form"/>
+
+            <h:commandButton value="add" action="#{invoicesBean.create()}"/>
+        </h:form>
+        <div class="text-center">
+            <div class="d-inline-block mr-2">
+                <h:form>
+                    <h:commandButton action="#{invoicesBean.prev()}" value="Geri"/>
+                </h:form>
+            </div>
+            <div class="d-inline-block">
+                <h:form>
+                    <h:commandButton action="#{invoicesBean.next()}"  value="İleri"/>
+                </h:form>
+            </div>
+        </div>
+    </ui:define>
+
+
+</ui:composition>

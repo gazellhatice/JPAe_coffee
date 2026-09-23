@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                 template="/template/template.xhtml">
+
+    <ui:define name="content">
+        
+        <h:form>
+            <h:dataTable value="#{addressesBean.list}" var="adres">
+                <h:column>
+                    <f:facet name="header">adres ID</f:facet>
+                        #{adres.addressId}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">addressLine1 </f:facet>
+                    <h:commandLink action="#{addressesBean.setAddresses(adres)}" value="#{adres.addressLine1}" >
+
+                    </h:commandLink>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">addressLine2 </f:facet>
+                        #{adres.addressLine2}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">city </f:facet>
+                        #{adres.city}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">state </f:facet>
+                        #{adres.state}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">postalCode </f:facet>
+                        #{adres.postalCode}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">country </f:facet>
+                        #{adres.country}
+                </h:column>
+                <!-- Add more columns as needed -->
+
+
+                <!-- Delete button -->
+                <h:column>
+                    <f:facet name="header">Actions</f:facet>
+                    <h:commandButton value="deleteCategory" action="#{addressesBean.delete(adres.addressId)}">
+                        <f:ajax execute="@this" render="@form"/>
+                    </h:commandButton>
+                </h:column>
+
+            </h:dataTable>
+
+            <h:panelGrid columns="2">
+                <h:outputLabel for="addressLine1">addressLine1 Name:</h:outputLabel>
+                <h:inputText id="addressLine1" value="#{addressesBean.addresses.addressLine1}"/>
+            </h:panelGrid>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="addressLine2">addressLine2 Name:</h:outputLabel>
+                <h:inputText id="addressLine2" value="#{addressesBean.addresses.addressLine2}"/>
+            </h:panelGrid>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="city">city Name:</h:outputLabel>
+                <h:inputText id="city" value="#{addressesBean.addresses.city}"/>
+            </h:panelGrid>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="state">state Name:</h:outputLabel>
+                <h:inputText id="state" value="#{addressesBean.addresses.state}"/>
+            </h:panelGrid>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="postalCode">postalCode Name:</h:outputLabel>
+                <h:inputText id="postalCode" value="#{addressesBean.addresses.postalCode}"/>
+            </h:panelGrid>
+
+            <h:panelGrid columns="2">
+                <h:outputLabel for="country">country Name:</h:outputLabel>
+                <h:inputText id="country" value="#{addressesBean.addresses.country}"/>
+            </h:panelGrid>
+            <h:commandButton styleClass="btn btn-success" rendered="#{addressesBean.addresses.addressId !=null}" action="#{addressesBean.clearForm()}" value="Clear Form"/>
+            <h:commandButton styleClass="btn btn-success" rendered="#{addressesBean.addresses.addressId  !=null}" action="#{addressesBean.update(addressesBean.addresses)}" value="update Form"/>
+
+            <h:commandButton value="addAdres" action="#{addressesBean.create()}"/>
+        </h:form>
+          
+    </ui:define>
+
+
+</ui:composition>

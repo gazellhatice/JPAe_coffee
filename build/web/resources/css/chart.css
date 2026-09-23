@@ -1,0 +1,66 @@
+
+/* Custom CSS */
+
+
+.btn-outline-success2 {
+    border-color: #8d6e63; /* Buton kenarlık rengi */
+    color: #8d6e63; /* Buton metin rengi */
+}
+.btn-outline-success2:hover {
+    background-color: #8d6e63; /* Butona hover olduğunda arka plan rengi */
+    color: #fff; /* Butona hover olduğunda metin rengi */
+}
+.btn-primary2 {
+    background-color: #8d6e63; /* Buton arka plan rengi */
+    border-color: #8d6e63; /* Buton kenarlık rengi */
+}
+.btn-primary2:hover {
+    background-color: #5d4037; /* Butona hover olduğunda arka plan rengi */
+    border-color: #5d4037; /* Butona hover olduğunda kenarlık rengi */
+}
+.card2 {
+    margin-top: 100px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f8f4f0; /* Kart arka plan rengi */
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.card-header2 {
+    background-color: #5d4037; /* Kahve tonlarındaki başlık arka plan rengi */
+    color: #fff; /* Başlık metin rengi */
+    border-bottom: none;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+.form-control2 {
+    border-radius: 8px;
+    border-color: #5d4037; /* Input kenarlık rengi */
+}
+.btn-primary2 {
+    background-color: #8d6e63; /* Buton arka plan rengi */
+    border-color: #8d6e63; /* Buton kenarlık rengi */
+}
+.btn-primary2:hover {
+    background-color: #5d4037; /* Butona hover olduğunda arka plan rengi */
+    border-color: #5d4037; /* Butona hover olduğunda kenarlık rengi */
+}
+body2 {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    font-family: Arial, sans-serif;
+}
+
+h22 {
+    color: var(--white-color);
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+p2 {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                 template="/template/template.xhtml">
+
+    <ui:define name="content">
+        <h:form>
+            <h:dataTable value="#{usersBean.list}" var="user">
+                <h:column>
+                    <f:facet name="header"> Users ID</f:facet>
+                        #{user.userId}
+                </h:column>
+                <h:column>
+                    <f:facet name="header"> userName </f:facet>
+                    <h:commandLink action="#{usersBean.setUsers(user)}" value="#{user.username}" >
+
+                    </h:commandLink>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"> password  </f:facet>
+                    
+   
+                        #{user.password}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">   roleId </f:facet>
+                        #{user.roleId.roleName}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">   addressId </f:facet>
+                        #{user.addressId.addressLine1}
+                </h:column>
+     
+
+
+                <!-- Delete button -->
+                <h:column>
+                    <f:facet name="header">Actions</f:facet>
+                    <h:commandButton value="delete" action="#{usersBean.delete(user.userId)}"/>
+                </h:column>
+            </h:dataTable>
+
+            <h:panelGrid columns="2">
+                <h:outputLabel for="userName">userName Name:</h:outputLabel>
+                <h:inputText id="userName" value="#{usersBean.users.username}"/>
+            </h:panelGrid>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="password">password Name:</h:outputLabel>
+                <h:inputText id="password" value="#{usersBean.users.password}"/>
+            </h:panelGrid>
+
+
+            <label>roleName</label>
+            <h:selectOneMenu value="#{usersBean.users.roleId}" converter="rolesConverter">
+                <f:selectItems value="#{rolesBean.list}" var="r" itemLabel="#{r.roleName}" itemValue="#{r}">      
+                </f:selectItems>
+            </h:selectOneMenu>
+            <label>addressLine1</label>
+            <h:selectOneMenu value="#{usersBean.users.addressId}" converter="addressesConverter">
+                <f:selectItems value="#{addressesBean.list}" var="d" itemLabel="#{d.addressLine1}" itemValue="#{d}">      
+                </f:selectItems>
+            </h:selectOneMenu>
+
+
+            <h:commandButton styleClass="btn btn-success" rendered="#{usersBean.users.userId !=null}" action="#{usersBean.clearForm()}" value="Clear Form"/>
+            <h:commandButton styleClass="btn btn-success" rendered="#{usersBean.users.userId  !=null}" action="#{usersBean.update(usersBean.users)}" value="update Form"/>
+
+            <h:commandButton value="add" action="#{usersBean.create()}"/>
+        </h:form>
+        <div class="text-center">
+            <div class="d-inline-block mr-2">
+                <h:form>
+                    <h:commandButton action="#{usersBean.prev()}" value="Geri"/>
+                </h:form>
+            </div>
+            <div class="d-inline-block">
+                <h:form>
+                    <h:commandButton action="#{usersBean.next()}"  value="İleri"/>
+                </h:form>
+            </div>
+        </div>
+    </ui:define>
+
+
+</ui:composition>

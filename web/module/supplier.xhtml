@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                 template="/template/template.xhtml">
+
+    <ui:define name="content">
+        <h:form>
+            <h:dataTable value="#{suppliersBean.list}" var="Suppliers">
+                <h:column>
+                    <f:facet name="header"> ID</f:facet>
+                        #{Suppliers.supplierId}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">addressLine1 </f:facet>
+                    <h:commandLink action="#{suppliersBean.setSuppliers(Suppliers)}" value="#{Suppliers.supplierName}" >
+
+                    </h:commandLink>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">contactName </f:facet>
+                        #{Suppliers.contactName}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">email </f:facet>
+                        #{Suppliers.email}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">phoneNumber </f:facet>
+                        #{Suppliers.phoneNumber}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">address </f:facet>
+                        #{Suppliers.address}
+                </h:column>
+                
+                <!-- Add more columns as needed -->
+
+
+                <!-- Delete button -->
+                <h:column>
+                    <f:facet name="header">Actions</f:facet>
+                    <h:commandButton value="delete" action="#{suppliersBean.delete(Suppliers.supplierId)}"/>
+                </h:column>
+            </h:dataTable>
+
+            <h:panelGrid columns="2">
+                <h:outputLabel for="supplierName">addressLine1 Name:</h:outputLabel>
+                <h:inputText id="supplierName" value="#{suppliersBean.suppliers.supplierName}"/>
+            </h:panelGrid>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="contactName">addressLine2 Name:</h:outputLabel>
+                <h:inputText id="contactName" value="#{suppliersBean.suppliers.contactName}"/>
+            </h:panelGrid>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="city">email Name:</h:outputLabel>
+                <h:inputText id="email" value="#{suppliersBean.suppliers.email}"/>
+            </h:panelGrid>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="phoneNumber">phoneNumber Name:</h:outputLabel>
+                <h:inputText id="phoneNumber" value="#{suppliersBean.suppliers.phoneNumber}"/>
+            </h:panelGrid>
+          
+            <h:panelGrid columns="2">
+                <h:outputLabel for="address">address Name:</h:outputLabel>
+                <h:inputText id="address" value="#{suppliersBean.suppliers.address}"/>
+            </h:panelGrid>
+            <h:commandButton styleClass="btn btn-success" rendered="#{suppliersBean.suppliers.supplierId !=null}" action="#{suppliersBean.clearForm()}" value="Clear Form"/>
+            <h:commandButton styleClass="btn btn-success" rendered="#{suppliersBean.suppliers.supplierId  !=null}" action="#{suppliersBean.update(suppliersBean.suppliers)}" value="update Form"/>
+
+            <h:commandButton value="addAdres" action="#{suppliersBean.create()}"/>
+        </h:form>
+    </ui:define>
+
+
+</ui:composition>

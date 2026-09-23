@@ -1,0 +1,55 @@
+
+.btn-outline-success4 {
+    border-color: #8d6e63; /* Buton kenarlık rengi */
+    color: #8d6e63; /* Buton metin rengi */
+}
+.btn-outline-success4:hover {
+    background-color: #8d6e63; /* Butona hover olduğunda arka plan rengi */
+    color: #fff; /* Butona hover olduğunda metin rengi */
+}
+
+/* Custom CSS */
+
+body4 {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    font-family: Arial, sans-serif;
+}
+
+h24 {
+    color: var(--white-color);
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+p4 {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+.gradient-custom4 {
+    /* fallback for old browsers */
+    background:#efebe9;
+}
+.card4 {
+    background-color: #8d6e63; /* Arka plan rengi */
+}
+.card-body4 {
+    color: #fff; /* Metin rengi */
+}
+.form-control {
+    background-color: #fff; /* Giriş kutularının arka plan rengi */
+    margin-left:115px;
+
+}
+
+
+.btn-outline-light4 {
+    color: #8d6e63; /* Buton metin rengi */
+    border-color: #8d6e63; /* Buton kenarlık rengi */
+}
+.btn-outline-light4:hover {
+    background-color: #8d6e63; /* Butona hover olduğunda arka plan rengi */
+    color: #fff; /* Butona hover olduğunda metin rengi */
+}

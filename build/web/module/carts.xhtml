@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                 template="/template/template.xhtml">
+
+    <ui:define name="content">
+        <h:form>
+            <h:dataTable value="#{cartsBean.list}" var="cart">
+                <h:column>
+                    <f:facet name="header"> Carts ID</f:facet>
+                        #{cart.cartId}
+                </h:column>
+                <h:column>
+                    <f:facet name="header"> quantity </f:facet>
+                    <h:commandLink action="#{cartsBean.setCarts(cart)}" value="#{cart.quantity}" >
+
+                    </h:commandLink>
+                </h:column>
+
+
+                <h:column>
+                    <f:facet name="header">   userId </f:facet>
+                        #{cart.userId.username}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">   productId </f:facet>
+                        #{cart.productId.productName}
+                </h:column>
+                <!-- Add more columns as needed -->
+
+
+                <!-- Delete button -->
+                <h:column>
+                    <f:facet name="header">Actions</f:facet>
+                    <h:commandButton value="delete" action="#{cartsBean.delete(cart.cartId)}"/>
+                </h:column>
+            </h:dataTable>
+
+
+            <h:panelGrid columns="2">
+                <h:outputLabel for="quantity">quantity Name:</h:outputLabel>
+                <h:inputText id="quantity" value="#{cartsBean.carts.quantity}"/>
+            </h:panelGrid>
+
+
+            <label>userId</label>
+            <h:selectOneMenu value="#{cartsBean.carts.userId}" converter="usersConverter">
+                <f:selectItems value="#{usersBean.list}" var="r" itemLabel="#{r.username}" itemValue="#{r}">      
+                </f:selectItems>
+            </h:selectOneMenu>
+            <label>productId</label>
+            <h:selectOneMenu value="#{cartsBean.carts.productId}" converter="productsConverter">
+                <f:selectItems value="#{productsBean.list}" var="d" itemLabel="#{d.productName}" itemValue="#{d}">      
+                </f:selectItems>
+            </h:selectOneMenu>
+
+
+            <h:commandButton styleClass="btn btn-success" rendered="#{cartsBean.carts.cartId !=null}" action="#{cartsBean.clearForm()}" value="Clear Form"/>
+            <h:commandButton styleClass="btn btn-success" rendered="#{cartsBean.carts.cartId  !=null}" action="#{cartsBean.update(cartsBean.carts)}" value="update Form"/>
+
+            <h:commandButton value="add" action="#{cartsBean.create()}"/>
+        </h:form>
+        <div class="text-center">
+            <div class="d-inline-block mr-2">
+                <h:form>
+                    <h:commandButton action="#{cartsBean.prev()}" value="Geri"/>
+                </h:form>
+            </div>
+            <div class="d-inline-block">
+                <h:form>
+                    <h:commandButton action="#{cartsBean.next()}"  value="İleri"/>
+                </h:form>
+            </div>
+        </div>
+    </ui:define>
+
+
+</ui:composition>

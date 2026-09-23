@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                 template="/template/template.xhtml">
+
+    <ui:define name="content">
+        <h:form>
+            <h:dataTable value="#{paymentsBean.list}" var="payments">
+                <h:column>
+                    <f:facet name="header">Payment ID</f:facet>
+                        #{payments.paymentId}
+                </h:column>
+                <h:column>
+                    <f:facet name="header"> amount </f:facet>
+                    <h:commandLink action="#{paymentsBean.setPayments(payments)}" value=" #{payments.amount}" >
+
+                    </h:commandLink>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">  paymentDate   </f:facet>
+                        #{payments.paymentDate}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">   orderId </f:facet>
+                        #{payments.orderId.orderId}
+                </h:column>
+
+                <!-- Add more columns as needed -->
+
+
+                <!-- Delete button -->
+                <h:column>
+                    <f:facet name="header">Actions</f:facet>
+                    <h:commandButton value="delete" action="#{paymentsBean.delete(payments.paymentId)}"/>
+                </h:column>
+            </h:dataTable>
+
+
+            <h:panelGrid columns="2">
+                <h:outputLabel for="amount">amount Name:</h:outputLabel>
+                <h:inputText id="amount" value="#{paymentsBean.payments.amount}"/>
+            </h:panelGrid>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="paymentDate">paymentDate Name:</h:outputLabel>
+                <h:inputText id="paymentDate" value="#{paymentsBean.payments.paymentDate}"/>
+            </h:panelGrid>
+
+
+            <label>orderId</label>
+            <h:selectOneMenu value="#{paymentsBean.payments.orderId}" converter="ordersConverter">
+                <f:selectItems value="#{ordersBean.list}" var="h" itemLabel="#{h.orderId}" itemValue="#{h}">      
+                </f:selectItems>
+            </h:selectOneMenu>
+
+
+            <h:commandButton styleClass="btn btn-success" rendered="#{paymentsBean.payments.paymentId !=null}" action="#{paymentsBean.clearForm()}" value="Clear Form"/>
+            <h:commandButton styleClass="btn btn-success" rendered="#{paymentsBean.payments.paymentId  !=null}" action="#{paymentsBean.update(paymentsBean.payments)}" value="update Form"/>
+
+            <h:commandButton value="add" action="#{paymentsBean.create()}"/>
+        </h:form>
+    </ui:define>
+
+
+</ui:composition>

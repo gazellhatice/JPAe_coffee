@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                 template="/template/template.xhtml">
+
+    <ui:define name="content">
+
+          <h:form>
+            <h:dataTable value="#{permissionsBean.list}" var="permissions">
+                <h:column>
+                    <f:facet name="header">permissions ID</f:facet>
+                        #{permissions.permissionId}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">permissionName Name</f:facet>
+                    <h:commandLink action="#{permissionsBean.setPermissions(permissions)}" value="#{permissions.permissionName}" >
+
+                    </h:commandLink>
+
+
+                </h:column>
+                <!-- Add more columns as needed -->
+
+
+                <!-- Delete button -->
+                <h:column>
+                    <f:facet name="header">Actions</f:facet>
+                    <h:commandButton value="delete" action="#{permissionsBean.delete(permissions.permissionId)}"/>
+                </h:column>
+            </h:dataTable>
+
+            <h:panelGrid columns="2">
+                <h:outputLabel for="permissionId">permission Name:</h:outputLabel>
+                <h:inputText id="permissionId" value="#{permissionsBean.permissions.permissionName}"/>
+            </h:panelGrid>
+
+            <h:commandButton styleClass="btn btn-success" rendered="#{permissionsBean.permissions.permissionId !=null}" action="#{permissionsBean.clearForm()}" value="Clear Form"/>
+            <h:commandButton styleClass="btn btn-success" rendered="#{permissionsBean.permissions.permissionId !=null}" action="#{permissionsBean.update(permissionsBean.permissions)}" value="update Form"/>
+
+            <h:commandButton value="addCategory" action="#{permissionsBean.create()}"/>
+        </h:form>
+   </ui:define>
+
+
+</ui:composition>

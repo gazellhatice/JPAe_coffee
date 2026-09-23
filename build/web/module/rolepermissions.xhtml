@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/template/template.xhtml">
+
+    <ui:define name="content">
+        <h:form>
+            <h:dataTable value="#{rolepermissionsBean.list}" var="rolepermissions">
+                 <h:column>
+                    <f:facet name="header">RolePErmission id</f:facet>
+                    #{rolepermissions.rolepermissionsId}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Role ID</f:facet>
+                    #{rolepermissions.roleId.roleId}
+                </h:column>
+                <h:column>
+                    <f:facet name="header"> Permission ID </f:facet>
+                    <h:commandLink action="#{rolepermissionsBean.setRolepermissions(rolepermissions)}" value="#{rolepermissions.permissionId.permissionId}" >
+
+                    </h:commandLink>
+                </h:column>
+               
+                <h:column>
+                    <f:facet name="header">Role Name</f:facet>
+                    #{rolepermissions.roleId.roleName}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Permission Name</f:facet>
+                    #{rolepermissions.permissionId.permissionName}
+                </h:column>
+                
+                <!-- Delete button -->
+                <h:column>
+                    <f:facet name="header">Actions</f:facet>
+                    <h:commandButton value="Delete" action="#{rolepermissionsBean.delete(rolepermissions.rolepermissionsId)}"/>
+                </h:column>
+            </h:dataTable>
+
+            <h:panelGrid columns="2">
+                <label>Role</label>
+                <h:selectOneMenu value="#{rolepermissionsBean.rolepermissions.roleId}" converter="rolesConverter">
+                    <f:selectItems value="#{rolesBean.list}" var="role" itemLabel="#{role.roleName}" itemValue="#{role}"/>
+                </h:selectOneMenu>
+            </h:panelGrid>
+
+            <h:panelGrid columns="2">
+                <label>Permission</label>
+                <h:selectOneMenu value="#{rolepermissionsBean.rolepermissions.permissionId}" converter="permissionsConverter">
+                    <f:selectItems value="#{permissionsBean.list}" var="permission" itemLabel="#{permission.permissionName}" itemValue="#{permission}"/>
+                </h:selectOneMenu>
+            </h:panelGrid>
+
+            <h:commandButton styleClass="btn btn-success" rendered="#{rolepermissionsBean.rolepermissions.permissionId != null and rolepermissionsBean.rolepermissions.permissionId != null}" action="#{rolepermissionsBean.clearForm()}" value="Clear Form"/>
+            <h:commandButton styleClass="btn btn-success" rendered="#{rolepermissionsBean.rolepermissions.permissionId != null and rolepermissionsBean.rolepermissions.permissionId != null}" action="#{rolepermissionsBean.update(rolepermissionsBean.rolepermissions)}" value="Update Form"/>
+            <h:commandButton value="Add" action="#{rolepermissionsBean.create()}"/>
+        </h:form>
+    </ui:define>
+</ui:composition>

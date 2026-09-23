@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:composition template="template/template1.xhtml">
+        <ui:define name="content">
+            <div class="container py-5 h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                        <h2>Bize Ulaşın</h2>
+                        <h:form>
+                            <div class="mb-3">
+                                <label for="name" class="form-label1">İsim:</label>
+                                <input type="text" class="form-control1" id="name" name="name" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label1">Email Adresi:</label>
+                                <input type="email" class="form-control1" id="email" name="email" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label1">Mesajınız:</label>
+                                <textarea class="form-control1" id="message" name="message"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary1" style="background-color: #fff; color: #8d6e63; border-color: #8d6e63;">Gönder</button>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>

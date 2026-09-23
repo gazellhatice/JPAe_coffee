@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                 template="/template/template.xhtml">
+
+    <ui:define name="content">
+        <h:form>
+            <h:dataTable value="#{productsBean.list}" var="urun">
+                <h:column>
+                    <f:facet name="header">Products ID</f:facet>
+                        #{urun.productId}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">productName </f:facet>
+                    <h:commandLink action="#{productsBean.setProducts(urun)}" value="#{urun.productName}" >
+
+                    </h:commandLink>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">price         </f:facet>
+                        #{urun.price}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">  stockQuantity   </f:facet>
+                        #{urun.stockQuantity}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">   description </f:facet>
+                        #{urun.description}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">   categoryId </f:facet>
+                        #{urun.categoryId.categoryName}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">   supplierId </f:facet>
+                        #{urun.supplierId.supplierName}
+                </h:column>
+                <!-- Add more columns as needed -->
+
+
+                <!-- Delete button -->
+                <h:column>
+                    <f:facet name="header">Actions</f:facet>
+                    <h:commandButton value="delete" action="#{productsBean.delete(urun.productId)}"/>
+                </h:column>
+            </h:dataTable>
+
+            <h:panelGrid columns="2">
+                <h:outputLabel for="productName">productName Name:</h:outputLabel>
+                <h:inputText id="productName" value="#{productsBean.products.productName}"/>
+            </h:panelGrid>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="price">price Name:</h:outputLabel>
+                <h:inputText id="price" value="#{productsBean.products.price}"/>
+            </h:panelGrid>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="stockQuantity">stockQuantity Name:</h:outputLabel>
+                <h:inputText id="stockQuantity" value="#{productsBean.products.stockQuantity}"/>
+            </h:panelGrid>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="description">description Name:</h:outputLabel>
+                <h:inputText id="description" value="#{productsBean.products.description}"/>
+            </h:panelGrid>
+
+
+            <label>categoryName</label>
+            <h:selectOneMenu value="#{productsBean.products.categoryId}" converter="productcategoriesConverter">
+                <f:selectItems value="#{categoryBean.list}" var="h" itemLabel="#{h.categoryName}" itemValue="#{h}">      
+                </f:selectItems>
+            </h:selectOneMenu>
+            <label>SUPPLIER</label>
+            <h:selectOneMenu value="#{productsBean.products.supplierId}" converter="suppliersConverter">
+                <f:selectItems value="#{suppliersBean.list}" var="d" itemLabel="#{d.supplierName}" itemValue="#{d}">      
+                </f:selectItems>
+            </h:selectOneMenu>
+
+
+
+
+
+
+            <h:commandButton styleClass="btn btn-success" rendered="#{productsBean.products.productId !=null}" action="#{productsBean.clearForm()}" value="Clear Form"/>
+            <h:commandButton styleClass="btn btn-success" rendered="#{productsBean.products.productId  !=null}" action="#{productsBean.update(productsBean.products)}" value="update Form"/>
+
+            <h:commandButton value="add" action="#{productsBean.create()}"/>
+        </h:form>
+    </ui:define>
+
+
+</ui:composition>

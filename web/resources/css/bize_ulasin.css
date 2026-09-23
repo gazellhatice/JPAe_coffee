@@ -1,0 +1,70 @@
+
+.btn-outline-success1 {
+    border-color: #8d6e63; /* Buton kenarlık rengi */
+    color: #8d6e63; /* Buton metin rengi */
+}
+.btn-outline-success1:hover {
+    background-color: #8d6e63; /* Butona hover olduğunda arka plan rengi */
+    color: #fff; /* Butona hover olduğunda metin rengi */
+}
+
+/* Custom CSS */
+
+body1 {
+    background-color: #8d6e63;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+
+
+h21 {
+    color: #fff;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+
+
+label1 {
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+textarea1 {
+    height: 150px;
+}
+
+input[type="submit"] {
+    background-color: #8d6e63;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #654321;
+}
+
+
+
+.gradient-custom1 {
+    /* fallback for old browsers */
+    background:#efebe9;
+
+
+}
